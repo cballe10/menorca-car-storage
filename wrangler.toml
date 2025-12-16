@@ -1,5 +1,3 @@
-name = "copy-of-mahon-car-storage"
+name = "menorca-car-storage"
 compatibility_date = "2025-12-16"
-
-[assets]
-directory = "./dist"
+pages_build_output_dir = "dist"
