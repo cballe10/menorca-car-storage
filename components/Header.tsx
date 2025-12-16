@@ -81,7 +81,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage, texts }) => {
             className="flex-shrink-0 flex items-center"
           >
             <img 
-              src="logo.png" 
+              src="/logo.png" 
               alt="Mahon Car Storage" 
               className="h-14 w-auto object-contain" 
             />
