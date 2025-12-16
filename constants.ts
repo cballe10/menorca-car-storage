@@ -26,7 +26,7 @@ export const CONTENT: Record<Language, Content> = {
         },
         {
           title: "ITV Management",
-          description: "We handle the entire ITV (inspection) process for you, ensuring your car is road-legal when you arrive."
+          description: "Available as an optional extra, we handle the entire ITV (inspection) process for you, ensuring your car is road-legal when you arrive."
         },
         {
           title: "Battery Care",
@@ -85,7 +85,7 @@ export const CONTENT: Record<Language, Content> = {
         },
         {
           title: "Gestión de ITV",
-          description: "Nos encargamos de todo el proceso de la ITV, asegurando que su coche esté legal al llegar."
+          description: "Disponible como servicio adicional, nos encargamos de todo el proceso de la ITV, asegurando que su coche esté legal al llegar."
         },
         {
           title: "Cuidado de Batería",
