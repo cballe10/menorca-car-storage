@@ -27,11 +27,11 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://images.unsplash.com/photo-1486006920555-c77dcf18193c?q=80&w=1920&auto=format&fit=crop" 
+          src="https://images.unsplash.com/photo-1470224114660-3f6686c562eb?q=80&w=1920&auto=format&fit=crop" 
           alt="Cars parked in secure storage" 
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-900/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/20"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -43,7 +43,7 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
           <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6 drop-shadow-lg">
             {content.title}
           </h1>
-          <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed max-w-xl">
+          <p className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed max-w-xl shadow-black/50 drop-shadow-md font-medium">
             {content.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
@@ -58,7 +58,7 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
             <a 
               href="#services" 
               onClick={(e) => handleScroll(e, 'services')}
-              className="inline-flex items-center justify-center bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/20 transition-all"
+              className="inline-flex items-center justify-center bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/20 transition-all shadow-sm"
             >
               View Services
             </a>
