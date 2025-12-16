@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ContactContent } from '../types';
-import { Phone, Mail, MapPin, Send } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, AlertCircle } from 'lucide-react';
 import { PHONE_NUMBER, EMAIL_ADDRESS } from '../constants';
 
 interface ContactProps {
@@ -8,21 +8,48 @@ interface ContactProps {
 }
 
 const Contact: React.FC<ContactProps> = ({ content }) => {
-  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus('submitting');
-    // Simulate API call
-    setTimeout(() => {
-      setFormStatus('success');
-      // Reset after a few seconds
-      setTimeout(() => setFormStatus('idle'), 5000);
-    }, 1500);
+    setErrorMessage("");
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xdkqrgrb", {
+        method: "POST",
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setFormStatus('success');
+        form.reset();
+        // Reset state after a few seconds
+        setTimeout(() => setFormStatus('idle'), 5000);
+      } else {
+        const jsonData = await response.json();
+        if (jsonData.errors) {
+          setErrorMessage(jsonData.errors.map((error: any) => error.message).join(", "));
+        } else {
+          setErrorMessage("Oops! There was a problem submitting your form");
+        }
+        setFormStatus('error');
+      }
+    } catch (error) {
+      setErrorMessage("Oops! There was a problem submitting your form");
+      setFormStatus('error');
+    }
   };
 
   return (
-    <section id="contact" className="py-24 bg-slate-900 text-white relative">
+    <section id="contact" className="scroll-mt-32 py-24 bg-slate-900 text-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           
@@ -75,7 +102,7 @@ const Contact: React.FC<ContactProps> = ({ content }) => {
           {/* Form */}
           <div className="bg-white rounded-2xl p-8 shadow-2xl text-slate-900">
             {formStatus === 'success' ? (
-              <div className="h-full flex flex-col items-center justify-center text-center py-12">
+              <div className="h-full flex flex-col items-center justify-center text-center py-12 animate-in fade-in zoom-in duration-300">
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-6">
                   <Send size={32} />
                 </div>
@@ -91,6 +118,7 @@ const Contact: React.FC<ContactProps> = ({ content }) => {
                   <input 
                     type="text" 
                     id="name"
+                    name="name"
                     required
                     className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all bg-slate-50"
                   />
@@ -104,6 +132,7 @@ const Contact: React.FC<ContactProps> = ({ content }) => {
                     <input 
                       type="email" 
                       id="email"
+                      name="email"
                       required
                       className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all bg-slate-50"
                     />
@@ -115,6 +144,7 @@ const Contact: React.FC<ContactProps> = ({ content }) => {
                     <input 
                       type="tel" 
                       id="phone"
+                      name="phone"
                       className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all bg-slate-50"
                     />
                   </div>
@@ -126,18 +156,26 @@ const Contact: React.FC<ContactProps> = ({ content }) => {
                   </label>
                   <textarea 
                     id="message"
+                    name="message"
                     rows={4}
                     required
                     className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all bg-slate-50 resize-none"
                   ></textarea>
                 </div>
 
+                {formStatus === 'error' && (
+                  <div className="flex items-center gap-2 text-red-600 bg-red-50 p-3 rounded-lg text-sm">
+                    <AlertCircle size={16} />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
                 <button 
                   type="submit"
                   disabled={formStatus === 'submitting'}
-                  className="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-4 rounded-lg transition-colors shadow-lg flex items-center justify-center gap-2 disabled:opacity-70"
+                  className="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-4 rounded-lg transition-colors shadow-lg flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  {formStatus === 'submitting' ? '...' : (
+                  {formStatus === 'submitting' ? 'Sending...' : (
                     <>
                       {content.submitButton}
                       <Send size={18} />

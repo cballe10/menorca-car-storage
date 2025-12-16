@@ -7,6 +7,21 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ content }) => {
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <section id="home" className="relative pt-20 h-screen min-h-[600px] flex items-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -33,6 +48,7 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
           <div className="flex flex-col sm:flex-row gap-4">
             <a 
               href="#contact" 
+              onClick={(e) => handleScroll(e, 'contact')}
               className="inline-flex items-center justify-center bg-brand-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-brand-700 transition-all shadow-lg hover:shadow-brand-500/25 group"
             >
               {content.cta}
@@ -40,6 +56,7 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
             </a>
             <a 
               href="#services" 
+              onClick={(e) => handleScroll(e, 'services')}
               className="inline-flex items-center justify-center bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/20 transition-all"
             >
               View Services

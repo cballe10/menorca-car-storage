@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ServicesContent } from '../types';
 import { Warehouse, Car, Battery, Sparkles, Plane, Wrench } from 'lucide-react';
 
@@ -17,7 +17,7 @@ const Services: React.FC<ServicesProps> = ({ content }) => {
   ];
 
   return (
-    <section id="services" className="py-24 bg-white">
+    <section id="services" className="scroll-mt-32 py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-brand-600 font-semibold tracking-wide uppercase text-sm mb-2">What We Do</h2>

@@ -14,6 +14,25 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage, texts }) => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      const headerOffset = 100; // Adjusts for the fixed header height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+    
+    setIsOpen(false);
+  };
+
   const navLinks = [
     { name: texts.home, href: "#home" },
     { name: texts.services, href: "#services" },
@@ -71,6 +90,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage, texts }) => {
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-slate-600 hover:text-brand-600 font-medium transition-colors duration-200"
               >
                 {link.name}
@@ -78,6 +98,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage, texts }) => {
             ))}
             <a
               href="#contact"
+              onClick={(e) => handleNavClick(e, '#contact')}
               className="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-full font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
             >
               {texts.contact}
@@ -104,7 +125,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage, texts }) => {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="block px-3 py-4 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50"
               >
                 {link.name}
