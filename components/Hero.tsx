@@ -37,15 +37,6 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="max-w-2xl relative">
           
-          {/* Logo Watermark Background */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] -z-10 pointer-events-none opacity-[0.15]">
-            <img 
-              src="/logo.png" 
-              alt="" 
-              className="w-full h-full object-contain"
-            />
-          </div>
-
           <div className="inline-block px-4 py-1.5 rounded-full bg-brand-500/20 border border-brand-400/30 text-brand-100 font-medium text-sm mb-6 backdrop-blur-md">
             Menorca's Premium Storage Solution
           </div>
