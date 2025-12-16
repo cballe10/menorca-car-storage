@@ -27,8 +27,8 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1920&auto=format&fit=crop" 
-          alt="Modern sports car" 
+          src="https://images.unsplash.com/photo-1486006920555-c77dcf18193c?q=80&w=1920&auto=format&fit=crop" 
+          alt="Cars parked in secure storage" 
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-900/40"></div>
