@@ -22,7 +22,7 @@ export const CONTENT: Record<Language, Content> = {
       items: [
         {
           title: "Secure Storage",
-          description: "Indoor and outdoor storage options in a secure, monitored facility near Mahon."
+          description: "Indoor and outdoor storage options in a secure, monitored facility near Mahon. 12 months storage for 550€ + IVA."
         },
         {
           title: "ITV Management",
@@ -81,7 +81,7 @@ export const CONTENT: Record<Language, Content> = {
       items: [
         {
           title: "Almacenamiento Seguro",
-          description: "Opciones de almacenamiento interior y exterior en instalaciones seguras y vigiladas cerca de Mahón."
+          description: "Opciones de almacenamiento interior y exterior en instalaciones seguras y vigiladas cerca de Mahón. 12 meses por 550€ + IVA."
         },
         {
           title: "Gestión de ITV",

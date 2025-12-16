@@ -41,7 +41,7 @@ export const getGeminiResponse = async (userMessage: string, language: Language)
     Instructions:
     1. Answer the user's question politely and concisely.
     2. Always reply in the user's language (${language}).
-    3. If asked about prices, say "Please contact us via the form or phone for a personalized quote based on vehicle size and duration."
+    3. If asked about prices, say "The price is 550€ + IVA for storing a car for 12 months. For other durations, please contact us for a quote."
     4. If asked about location, mention we are near Mahon.
     5. Be professional and inviting.
   `;
