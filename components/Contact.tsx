@@ -64,11 +64,11 @@ const Contact: React.FC<ContactProps> = ({ content }) => {
                   <Phone size={24} />
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-1">Call Us</h4>
+                  <h4 className="text-lg font-semibold text-white mb-1">{content.callUs}</h4>
                   <a href={`tel:${PHONE_NUMBER.replace(/\s/g, '')}`} className="text-slate-300 hover:text-white transition block text-lg">
                     {PHONE_NUMBER}
                   </a>
-                  <span className="text-sm text-slate-500 block mt-1">Available via WhatsApp</span>
+                  <span className="text-sm text-slate-500 block mt-1">{content.whatsapp}</span>
                 </div>
               </div>
 
@@ -77,7 +77,7 @@ const Contact: React.FC<ContactProps> = ({ content }) => {
                   <Mail size={24} />
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-1">Email Us</h4>
+                  <h4 className="text-lg font-semibold text-white mb-1">{content.emailUs}</h4>
                   <a href={`mailto:${EMAIL_ADDRESS}`} className="text-slate-300 hover:text-white transition block text-lg">
                     {EMAIL_ADDRESS}
                   </a>
@@ -89,10 +89,9 @@ const Contact: React.FC<ContactProps> = ({ content }) => {
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-1">Location</h4>
-                  <p className="text-slate-300 text-lg">
-                    Mahón (Maó), Menorca<br />
-                    Balearic Islands, Spain
+                  <h4 className="text-lg font-semibold text-white mb-1">{content.location}</h4>
+                  <p className="text-slate-300 text-lg whitespace-pre-line">
+                    {content.locationText}
                   </p>
                 </div>
               </div>

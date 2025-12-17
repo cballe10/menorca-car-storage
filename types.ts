@@ -14,6 +14,8 @@ export interface HeroContent {
   title: string;
   subtitle: string;
   cta: string;
+  tagline: string;
+  viewServices: string;
 }
 
 export interface ServiceItem {
@@ -22,6 +24,7 @@ export interface ServiceItem {
 }
 
 export interface ServicesContent {
+  sectionTitle: string;
   heading: string;
   subheading: string;
   items: ServiceItem[];
@@ -36,6 +39,11 @@ export interface ContactContent {
   messageLabel: string;
   submitButton: string;
   successMessage: string;
+  callUs: string;
+  emailUs: string;
+  location: string;
+  whatsapp: string;
+  locationText: string;
 }
 
 export interface AiAssistantContent {

@@ -38,7 +38,7 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
         <div className="max-w-2xl relative">
           
           <div className="inline-block px-4 py-1.5 rounded-full bg-brand-500/20 border border-brand-400/30 text-brand-100 font-medium text-sm mb-6 backdrop-blur-md">
-            Menorca's Premium Storage Solution
+            {content.tagline}
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6 drop-shadow-lg">
             {content.title}
@@ -60,7 +60,7 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
               onClick={(e) => handleScroll(e, 'services')}
               className="inline-flex items-center justify-center bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/20 transition-all shadow-sm"
             >
-              View Services
+              {content.viewServices}
             </a>
           </div>
         </div>

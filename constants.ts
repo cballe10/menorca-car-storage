@@ -14,15 +14,18 @@ export const CONTENT: Record<Language, Content> = {
     hero: {
       title: "Secure Car Storage in Menorca",
       subtitle: "Professional care for your vehicle while you are away. Located in Mahon, serving the entire island.",
-      cta: "Get a Quote"
+      cta: "Get a Quote",
+      tagline: "Menorca's Premium Storage Solution",
+      viewServices: "View Services"
     },
     services: {
+      sectionTitle: "What We Do",
       heading: "Our Premium Services",
       subheading: "Beyond just parking, we offer complete care for your vehicle.",
       items: [
         {
           title: "Secure Storage",
-          description: "Indoor and outdoor storage options in a secure, monitored facility near Mahon. 12 months storage for 550€ + IVA."
+          description: "Indoor and outdoor storage options in a secure, monitored facility near Mahon. 12 months storage for 550€ + IVA. We also offer flexible options for days, weeks, or months. Contact us for a quote."
         },
         {
           title: "ITV Management",
@@ -54,7 +57,12 @@ export const CONTENT: Record<Language, Content> = {
       phoneLabel: "Phone Number",
       messageLabel: "How can we help?",
       submitButton: "Send Message",
-      successMessage: "Thank you! We will be in touch shortly."
+      successMessage: "Thank you! We will be in touch shortly.",
+      callUs: "Call Us",
+      emailUs: "Email Us",
+      location: "Location",
+      whatsapp: "Available via WhatsApp",
+      locationText: "Mahón (Maó), Menorca\nBalearic Islands, Spain"
     },
     ai: {
       title: "Ask AI Assistant",
@@ -71,17 +79,20 @@ export const CONTENT: Record<Language, Content> = {
       about: "Nosotros"
     },
     hero: {
-      title: "Pupilaje de Coches en Menorca",
+      title: "Custodia de Vehículos en Menorca",
       subtitle: "Cuidado profesional para su vehículo mientras está fuera. Situados en Mahón, sirviendo a toda la isla.",
-      cta: "Solicitar Presupuesto"
+      cta: "Solicitar Presupuesto",
+      tagline: "La Solución Premium de Almacenamiento en Menorca",
+      viewServices: "Ver Servicios"
     },
     services: {
+      sectionTitle: "Lo Que Hacemos",
       heading: "Nuestros Servicios",
       subheading: "Más que un simple parking, ofrecemos cuidado completo para su vehículo.",
       items: [
         {
           title: "Almacenamiento Seguro",
-          description: "Opciones de almacenamiento interior y exterior en instalaciones seguras y vigiladas cerca de Mahón. 12 meses por 550€ + IVA."
+          description: "Opciones de almacenamiento interior y exterior en instalaciones seguras y vigiladas cerca de Mahón. 12 meses por 550€ + IVA. También disponible por días, semanas o meses. Consúltenos para presupuesto."
         },
         {
           title: "Gestión de ITV",
@@ -113,7 +124,12 @@ export const CONTENT: Record<Language, Content> = {
       phoneLabel: "Teléfono",
       messageLabel: "¿Cómo podemos ayudarle?",
       submitButton: "Enviar Mensaje",
-      successMessage: "¡Gracias! Nos pondremos en contacto pronto."
+      successMessage: "¡Gracias! Nos pondremos en contacto pronto.",
+      callUs: "Llámenos",
+      emailUs: "Envíenos un Email",
+      location: "Ubicación",
+      whatsapp: "Disponible vía WhatsApp",
+      locationText: "Mahón (Maó), Menorca\nIslas Baleares, España"
     },
     ai: {
       title: "Asistente Virtual",
