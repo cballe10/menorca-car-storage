@@ -11,7 +11,7 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
     e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
-      const headerOffset = 100;
+      const headerOffset = 150;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
@@ -23,7 +23,7 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
   };
 
   return (
-    <section id="home" className="relative pt-20 h-screen min-h-[600px] flex items-center overflow-hidden">
+    <section id="home" className="relative pt-36 md:pt-48 h-screen min-h-[600px] flex items-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 

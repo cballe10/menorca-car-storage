@@ -20,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage, texts }) => {
     const element = document.getElementById(targetId);
     
     if (element) {
-      const headerOffset = 100; // Adjusts for the fixed header height
+      const headerOffset = 150; // Increased to account for larger header
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
@@ -74,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage, texts }) => {
 
       {/* Main Nav */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-20 md:h-32">
           <a 
             href="#home" 
             onClick={(e) => handleNavClick(e, '#home')}
@@ -83,7 +83,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage, texts }) => {
             <img 
               src="/logo.png" 
               alt="Mahon Car Storage" 
-              className="h-14 w-auto object-contain" 
+              className="h-14 md:h-28 w-auto object-contain transition-all duration-300" 
             />
           </a>
 
