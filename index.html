@@ -3,47 +3,149 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mahon Car Storage - Menorca</title>
-    <meta name="description" content="Secure car storage Menorca. Professional indoor and outdoor parking in Mahon with optional ITV management, battery care, and airport handover services." />
+    <title>Mahon Car Storage — Secure Vehicle Storage & Airport Delivery in Menorca</title>
+    <meta name="description" content="Professional car storage in Menorca. Secure indoor & outdoor vehicle storage near Mahón with airport delivery to MAH. ITV management, battery care & valet. From 550€/year." />
+    <meta name="keywords" content="car storage Menorca, vehicle storage Mahon, airport delivery Menorca, ITV management Menorca, parking Menorca, custodia coches Menorca, garde auto Minorque" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://www.mahoncarstorage.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mahon Car Storage — Menorca's Premium Vehicle Storage" />
+    <meta property="og:description" content="Secure car storage in Menorca with airport delivery. Professional, flexible, trusted by second-home owners." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.mahoncarstorage.com/" />
+
+    <!-- Fonts: Playfair Display (luxury display) + DM Sans (refined body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="/logo.png" />
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
+              display: ['"Playfair Display"', 'Georgia', 'serif'],
+              sans: ['"DM Sans"', 'sans-serif'],
             },
             colors: {
-              brand: {
-                50: '#eff6ff',
-                100: '#dbeafe',
-                500: '#3b82f6',
-                600: '#2563eb',
-                800: '#1e40af',
-                900: '#1e3a8a',
-              }
+              navy: {
+                50:  '#f0f4fa',
+                100: '#dde6f3',
+                200: '#b8cce6',
+                300: '#86a8d4',
+                400: '#5480bc',
+                500: '#3460a5',
+                600: '#264e8f',
+                700: '#1d3d72',
+                800: '#172f58',
+                900: '#0f2040',
+                950: '#091529',
+              },
+              gold: {
+                50:  '#fdf9ee',
+                100: '#f9f0d0',
+                200: '#f2de9a',
+                300: '#e9c55e',
+                400: '#e0ac32',
+                500: '#c8911a',
+                600: '#a97213',
+                700: '#875511',
+                800: '#6b4114',
+                900: '#593614',
+              },
             }
           }
         }
       }
     </script>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
-    "lucide-react": "https://esm.sh/lucide-react@^0.561.0"
-  }
-}
-</script>
-</head>
-  <body class="bg-slate-50 text-slate-900 antialiased">
+
+    <style>
+      :root {
+        --navy-950: #091529;
+        --navy-900: #0f2040;
+        --navy-800: #172f58;
+        --gold-400: #e0ac32;
+        --gold-300: #e9c55e;
+      }
+
+      /* Grain texture overlay for luxury feel */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.4;
+      }
+
+      /* Smooth scroll for the whole page */
+      html { scroll-behavior: smooth; }
+
+      /* Selection colour */
+      ::selection {
+        background: #e9c55e;
+        color: #091529;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #f0f4fa; }
+      ::-webkit-scrollbar-thumb { background: #264e8f; border-radius: 3px; }
+
+      /* Fade-up animation for sections */
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(28px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      .animate-fade-up {
+        animation: fadeUp 0.7s ease forwards;
+      }
+
+      /* Gold shimmer on hover for CTA buttons */
+      @keyframes shimmer {
+        0%   { background-position: -200% center; }
+        100% { background-position: 200% center; }
+      }
+
+      .btn-gold {
+        background: linear-gradient(90deg, #c8911a, #e9c55e, #c8911a);
+        background-size: 200% auto;
+        transition: background-position 0.5s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      }
+      .btn-gold:hover {
+        background-position: right center;
+        box-shadow: 0 8px 30px rgba(228, 172, 50, 0.4);
+        transform: translateY(-2px);
+      }
+
+      /* Divider line */
+      .gold-line {
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, #e0ac32, #e9c55e);
+        border-radius: 2px;
+      }
+    </style>
+
+    <link rel="icon" type="image/png" href="/logo.png" />
+
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@^19.2.3",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+        "react/": "https://esm.sh/react@^19.2.3/",
+        "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
+        "lucide-react": "https://esm.sh/lucide-react@^0.561.0"
+      }
+    }
+    </script>
+  </head>
+  <body class="bg-slate-50 text-navy-900 antialiased">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>
