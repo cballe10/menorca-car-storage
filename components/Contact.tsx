@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ContactContent } from '../types';
-import { Phone, Mail, MapPin, Send, AlertCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, AlertCircle, CheckCircle } from 'lucide-react';
 import { PHONE_NUMBER, EMAIL_ADDRESS } from '../constants';
 
 interface ContactProps {
@@ -9,182 +9,171 @@ interface ContactProps {
 
 const Contact: React.FC<ContactProps> = ({ content }) => {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus('submitting');
-    setErrorMessage("");
-
+    setErrorMessage('');
     const form = e.currentTarget;
     const data = new FormData(form);
-
     try {
-      const response = await fetch("https://formspree.io/f/xdkqrgrb", {
-        method: "POST",
+      const res = await fetch('https://formspree.io/f/xdkqrgrb', {
+        method: 'POST',
         body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
+        headers: { Accept: 'application/json' },
       });
-
-      if (response.ok) {
+      if (res.ok) {
         setFormStatus('success');
         form.reset();
-        // Reset state after a few seconds
-        setTimeout(() => setFormStatus('idle'), 5000);
+        setTimeout(() => setFormStatus('idle'), 6000);
       } else {
-        const jsonData = await response.json();
-        if (jsonData.errors) {
-          setErrorMessage(jsonData.errors.map((error: any) => error.message).join(", "));
-        } else {
-          setErrorMessage("Oops! There was a problem submitting your form");
-        }
+        const json = await res.json();
+        setErrorMessage(json.errors?.map((e: any) => e.message).join(', ') || 'Something went wrong.');
         setFormStatus('error');
       }
-    } catch (error) {
-      setErrorMessage("Oops! There was a problem submitting your form");
+    } catch {
+      setErrorMessage('Something went wrong. Please try again.');
       setFormStatus('error');
     }
   };
 
+  const infos = [
+    {
+      icon: <Phone size={18} />,
+      label: content.callUs,
+      value: PHONE_NUMBER,
+      href: `tel:${PHONE_NUMBER.replace(/\s/g, '')}`,
+      sub: content.whatsapp,
+    },
+    {
+      icon: <Mail size={18} />,
+      label: content.emailUs,
+      value: EMAIL_ADDRESS,
+      href: `mailto:${EMAIL_ADDRESS}`,
+    },
+    {
+      icon: <MapPin size={18} />,
+      label: content.location,
+      value: content.locationText,
+    },
+  ];
+
   return (
-    <section id="contact" className="scroll-mt-32 py-24 bg-slate-900 text-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          
-          {/* Contact Info */}
+    <section id="contact" className="scroll-mt-32 py-28 bg-navy-950 relative">
+      {/* Subtle top gold line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/30 to-transparent" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+          {/* Left: info */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">{content.heading}</h2>
-            <p className="text-slate-400 text-lg mb-12">{content.description}</p>
-            
+            <p className="font-sans text-xs text-gold-500 tracking-widest uppercase font-semibold mb-3">
+              {content.heading}
+            </p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+              {content.heading}
+            </h2>
+            <div className="gold-line mb-6" />
+            <p className="font-sans text-navy-400 text-lg font-light mb-12 leading-relaxed">
+              {content.description}
+            </p>
+
             <div className="space-y-8">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center flex-shrink-0 text-brand-400">
-                  <Phone size={24} />
+              {infos.map((info, i) => (
+                <div key={i} className="flex items-start gap-5">
+                  <div className="w-11 h-11 bg-navy-800 border border-navy-700 rounded-sm flex items-center justify-center flex-shrink-0 text-gold-400">
+                    {info.icon}
+                  </div>
+                  <div>
+                    <p className="font-sans text-xs text-navy-500 tracking-widest uppercase mb-1">{info.label}</p>
+                    {info.href ? (
+                      <a href={info.href} className="font-sans text-navy-200 hover:text-gold-300 transition-colors text-base whitespace-pre-line font-light">
+                        {info.value}
+                      </a>
+                    ) : (
+                      <p className="font-sans text-navy-200 text-base whitespace-pre-line font-light">{info.value}</p>
+                    )}
+                    {info.sub && (
+                      <span className="font-sans text-xs text-navy-500 mt-0.5 block">{info.sub}</span>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-lg font-semibold text-white mb-1">{content.callUs}</h4>
-                  <a href={`tel:${PHONE_NUMBER.replace(/\s/g, '')}`} className="text-slate-300 hover:text-white transition block text-lg">
-                    {PHONE_NUMBER}
-                  </a>
-                  <span className="text-sm text-slate-500 block mt-1">{content.whatsapp}</span>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center flex-shrink-0 text-brand-400">
-                  <Mail size={24} />
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold text-white mb-1">{content.emailUs}</h4>
-                  <a href={`mailto:${EMAIL_ADDRESS}`} className="text-slate-300 hover:text-white transition block text-lg">
-                    {EMAIL_ADDRESS}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center flex-shrink-0 text-brand-400">
-                  <MapPin size={24} />
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold text-white mb-1">{content.location}</h4>
-                  <p className="text-slate-300 text-lg whitespace-pre-line">
-                    {content.locationText}
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* Form */}
-          <div className="bg-white rounded-2xl p-8 shadow-2xl text-slate-900">
+          {/* Right: form */}
+          <div className="bg-white rounded-sm shadow-2xl shadow-navy-950/50 p-8 md:p-10">
             {formStatus === 'success' ? (
-              <div className="h-full flex flex-col items-center justify-center text-center py-12 animate-in fade-in zoom-in duration-300">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-6">
-                  <Send size={32} />
+              <div className="flex flex-col items-center justify-center text-center py-16">
+                <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center text-green-500 mb-5">
+                  <CheckCircle size={36} />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-800 mb-2">Message Sent!</h3>
-                <p className="text-slate-600">{content.successMessage}</p>
+                <h3 className="font-display text-2xl font-bold text-navy-900 mb-2">Message Sent</h3>
+                <p className="font-sans text-slate-500 font-light">{content.successMessage}</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block font-sans text-xs text-slate-500 tracking-wide uppercase mb-1.5">
                     {content.nameLabel}
                   </label>
-                  <input 
-                    type="text" 
-                    id="name"
-                    name="name"
-                    required
-                    className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all bg-slate-50"
+                  <input
+                    type="text" name="name" required
+                    className="w-full px-4 py-3 border border-slate-200 rounded-sm font-sans text-sm text-navy-900 bg-slate-50 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-300 transition-all"
                   />
                 </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+                    <label className="block font-sans text-xs text-slate-500 tracking-wide uppercase mb-1.5">
                       {content.emailLabel}
                     </label>
-                    <input 
-                      type="email" 
-                      id="email"
-                      name="email"
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all bg-slate-50"
+                    <input
+                      type="email" name="email" required
+                      className="w-full px-4 py-3 border border-slate-200 rounded-sm font-sans text-sm text-navy-900 bg-slate-50 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-300 transition-all"
                     />
                   </div>
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">
+                    <label className="block font-sans text-xs text-slate-500 tracking-wide uppercase mb-1.5">
                       {content.phoneLabel}
                     </label>
-                    <input 
-                      type="tel" 
-                      id="phone"
-                      name="phone"
-                      className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all bg-slate-50"
+                    <input
+                      type="tel" name="phone"
+                      className="w-full px-4 py-3 border border-slate-200 rounded-sm font-sans text-sm text-navy-900 bg-slate-50 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-300 transition-all"
                     />
                   </div>
                 </div>
-
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block font-sans text-xs text-slate-500 tracking-wide uppercase mb-1.5">
                     {content.messageLabel}
                   </label>
-                  <textarea 
-                    id="message"
-                    name="message"
-                    rows={4}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all bg-slate-50 resize-none"
-                  ></textarea>
+                  <textarea
+                    name="message" rows={4} required
+                    className="w-full px-4 py-3 border border-slate-200 rounded-sm font-sans text-sm text-navy-900 bg-slate-50 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-300 transition-all resize-none"
+                  />
                 </div>
 
                 {formStatus === 'error' && (
-                  <div className="flex items-center gap-2 text-red-600 bg-red-50 p-3 rounded-lg text-sm">
-                    <AlertCircle size={16} />
+                  <div className="flex items-center gap-2 text-red-600 bg-red-50 border border-red-100 p-3 rounded-sm text-sm font-sans">
+                    <AlertCircle size={15} />
                     <span>{errorMessage}</span>
                   </div>
                 )}
 
-                <button 
+                <button
                   type="submit"
                   disabled={formStatus === 'submitting'}
-                  className="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-4 rounded-lg transition-colors shadow-lg flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="btn-gold w-full text-navy-950 py-4 rounded-sm font-sans font-semibold text-sm tracking-wide flex items-center justify-center gap-2 disabled:opacity-60"
                 >
                   {formStatus === 'submitting' ? 'Sending...' : (
-                    <>
-                      {content.submitButton}
-                      <Send size={18} />
-                    </>
+                    <>{content.submitButton} <Send size={15} /></>
                   )}
                 </button>
               </form>
             )}
           </div>
-
         </div>
       </div>
     </section>
