@@ -1,6 +1,7 @@
 export enum Language {
   EN = 'EN',
-  ES = 'ES'
+  ES = 'ES',
+  FR = 'FR'
 }
 
 export interface NavContent {
@@ -30,6 +31,32 @@ export interface ServicesContent {
   items: ServiceItem[];
 }
 
+export interface HowItWorksStep {
+  step: string;
+  title: string;
+  description: string;
+}
+
+export interface HowItWorksContent {
+  sectionTitle: string;
+  heading: string;
+  steps: HowItWorksStep[];
+}
+
+export interface TrustStat {
+  value: string;
+  label: string;
+}
+
+export interface TrustBarContent {
+  stats: TrustStat[];
+}
+
+export interface SeoSectionContent {
+  heading: string;
+  body: string[];
+}
+
 export interface ContactContent {
   heading: string;
   description: string;
@@ -57,6 +84,9 @@ export interface Content {
   nav: NavContent;
   hero: HeroContent;
   services: ServicesContent;
+  howItWorks: HowItWorksContent;
+  trustBar: TrustBarContent;
+  seoSection: SeoSectionContent;
   contact: ContactContent;
   ai: AiAssistantContent;
 }
