@@ -7,7 +7,13 @@
     <meta name="description" content="Professional car storage in Menorca. Secure indoor & outdoor vehicle storage near Mahón with airport delivery to MAH. ITV management, battery care & valet. From 550€/year." />
     <meta name="keywords" content="car storage Menorca, vehicle storage Mahon, airport delivery Menorca, ITV management Menorca, parking Menorca, custodia coches Menorca, garde auto Minorque" />
     <meta name="robots" content="index, follow" />
+
+    <!-- Canonical & hreflang for multilingual SEO -->
     <link rel="canonical" href="https://www.mahoncarstorage.com/" />
+    <link rel="alternate" hreflang="en" href="https://www.mahoncarstorage.com/" />
+    <link rel="alternate" hreflang="es" href="https://www.mahoncarstorage.com/es" />
+    <link rel="alternate" hreflang="fr" href="https://www.mahoncarstorage.com/fr" />
+    <link rel="alternate" hreflang="x-default" href="https://www.mahoncarstorage.com/" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Mahon Car Storage — Menorca's Premium Vehicle Storage" />
@@ -15,7 +21,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.mahoncarstorage.com/" />
 
-    <!-- Fonts: Playfair Display (luxury display) + DM Sans (refined body) -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -62,55 +68,16 @@
     </script>
 
     <style>
-      :root {
-        --navy-950: #091529;
-        --navy-900: #0f2040;
-        --navy-800: #172f58;
-        --gold-400: #e0ac32;
-        --gold-300: #e9c55e;
-      }
-
-      /* Grain texture overlay for luxury feel */
-      body::before {
-        content: '';
-        position: fixed;
-        inset: 0;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-        pointer-events: none;
-        z-index: 9999;
-        opacity: 0.4;
-      }
-
-      /* Smooth scroll for the whole page */
       html { scroll-behavior: smooth; }
-
-      /* Selection colour */
-      ::selection {
-        background: #e9c55e;
-        color: #091529;
-      }
-
-      /* Custom scrollbar */
+      ::selection { background: #e9c55e; color: #091529; }
       ::-webkit-scrollbar { width: 6px; }
       ::-webkit-scrollbar-track { background: #f0f4fa; }
       ::-webkit-scrollbar-thumb { background: #264e8f; border-radius: 3px; }
-
-      /* Fade-up animation for sections */
       @keyframes fadeUp {
         from { opacity: 0; transform: translateY(28px); }
         to   { opacity: 1; transform: translateY(0); }
       }
-
-      .animate-fade-up {
-        animation: fadeUp 0.7s ease forwards;
-      }
-
-      /* Gold shimmer on hover for CTA buttons */
-      @keyframes shimmer {
-        0%   { background-position: -200% center; }
-        100% { background-position: 200% center; }
-      }
-
+      .animate-fade-up { animation: fadeUp 0.7s ease forwards; }
       .btn-gold {
         background: linear-gradient(90deg, #c8911a, #e9c55e, #c8911a);
         background-size: 200% auto;
@@ -121,8 +88,6 @@
         box-shadow: 0 8px 30px rgba(228, 172, 50, 0.4);
         transform: translateY(-2px);
       }
-
-      /* Divider line */
       .gold-line {
         width: 60px;
         height: 2px;
