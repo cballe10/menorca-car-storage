@@ -45,8 +45,10 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
           className="w-full h-full object-cover scale-105"
           style={{ animation: 'slowZoom 18s ease-in-out infinite alternate' }}
         />
-        {/* Deep navy gradient — richer than before */}
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/92 via-navy-950/70 to-navy-950/20" />
+        {/* Strong left overlay so text is always legible */}
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/85 to-navy-950/30" />
+        {/* Top-to-bottom depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/30 via-transparent to-navy-950/50" />
         {/* Subtle gold accent at bottom */}
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/40 to-transparent" />
       </div>
@@ -77,7 +79,7 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
           {/* Gold divider */}
           <div className="gold-line mb-6" />
 
-          <p className="font-sans text-lg md:text-xl text-navy-100/80 leading-relaxed mb-10 max-w-xl font-light">
+          <p className="font-sans text-lg md:text-xl text-white/80 leading-relaxed mb-10 max-w-xl font-light">
             {content.subtitle}
           </p>
 
