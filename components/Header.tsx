@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Menu, X, Globe, Phone, Mail } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Phone, Mail } from 'lucide-react';
 import { Language, NavContent } from '../types';
 import { PHONE_NUMBER, EMAIL_ADDRESS } from '../constants';
 
@@ -11,129 +11,147 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ language, setLanguage, texts }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    
-    if (element) {
-      const headerOffset = 150; // Increased to account for larger header
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+    const el = document.getElementById(href.replace('#', ''));
+    if (el) {
+      const offset = el.getBoundingClientRect().top + window.scrollY - 130;
+      window.scrollTo({ top: offset, behavior: 'smooth' });
     }
-    
     setIsOpen(false);
   };
 
   const navLinks = [
-    { name: texts.home, href: "#home" },
-    { name: texts.services, href: "#services" },
-    { name: texts.contact, href: "#contact" },
+    { name: texts.home, href: '#home' },
+    { name: texts.services, href: '#services' },
+    { name: texts.contact, href: '#contact' },
   ];
 
+  const langs: Language[] = [Language.EN, Language.ES, Language.FR];
+
   return (
-    <header className="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-gray-100">
-      {/* Top Bar for Contact Info */}
-      <div className="bg-brand-900 text-white text-xs py-2 px-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex gap-4">
-            <a href={`tel:${PHONE_NUMBER.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-brand-100 transition">
-              <Phone size={14} />
-              <span className="hidden sm:inline">{PHONE_NUMBER}</span>
+    <header
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-navy-950/97 backdrop-blur-md shadow-lg shadow-navy-950/30'
+          : 'bg-navy-950'
+      }`}
+    >
+      {/* Top bar */}
+      <div className="border-b border-navy-800/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-2 text-xs">
+          <div className="flex gap-5">
+            <a
+              href={`tel:${PHONE_NUMBER.replace(/\s/g, '')}`}
+              className="flex items-center gap-1.5 text-gold-300/80 hover:text-gold-300 transition-colors"
+            >
+              <Phone size={12} />
+              <span className="hidden sm:inline tracking-wide">{PHONE_NUMBER}</span>
             </a>
-            <a href={`mailto:${EMAIL_ADDRESS}`} className="flex items-center gap-2 hover:text-brand-100 transition">
-              <Mail size={14} />
-              <span className="hidden sm:inline">{EMAIL_ADDRESS}</span>
+            <a
+              href={`mailto:${EMAIL_ADDRESS}`}
+              className="flex items-center gap-1.5 text-gold-300/80 hover:text-gold-300 transition-colors"
+            >
+              <Mail size={12} />
+              <span className="hidden sm:inline tracking-wide">{EMAIL_ADDRESS}</span>
             </a>
           </div>
-          <div className="flex items-center gap-2 font-semibold">
-            <button 
-              onClick={() => setLanguage(Language.EN)}
-              className={`${language === Language.EN ? 'text-white' : 'text-brand-300'} hover:text-white`}
-            >
-              EN
-            </button>
-            <span className="text-brand-500">|</span>
-            <button 
-              onClick={() => setLanguage(Language.ES)}
-              className={`${language === Language.ES ? 'text-white' : 'text-brand-300'} hover:text-white`}
-            >
-              ES
-            </button>
+
+          {/* Language switcher */}
+          <div className="flex items-center gap-1 font-sans text-xs font-medium tracking-widest">
+            {langs.map((l, i) => (
+              <React.Fragment key={l}>
+                {i > 0 && <span className="text-navy-600">·</span>}
+                <button
+                  onClick={() => setLanguage(l)}
+                  className={`px-1.5 py-0.5 rounded transition-colors ${
+                    language === l
+                      ? 'text-gold-400 font-semibold'
+                      : 'text-navy-400 hover:text-gold-300'
+                  }`}
+                >
+                  {l}
+                </button>
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Main Nav */}
+      {/* Main nav */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20 md:h-32">
-          <a 
-            href="#home" 
-            onClick={(e) => handleNavClick(e, '#home')}
-            className="flex-shrink-0 flex items-center"
-          >
-            <img 
-              src="/logo.png" 
-              alt="Mahon Car Storage" 
-              className="h-14 md:h-28 w-auto object-contain transition-all duration-300" 
+        <div className="flex justify-between items-center h-20 md:h-28">
+          <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="flex-shrink-0">
+            <img
+              src="/logo.png"
+              alt="Mahon Car Storage"
+              className="h-12 md:h-20 w-auto object-contain"
             />
           </a>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex space-x-8 items-center">
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-slate-600 hover:text-brand-600 font-medium transition-colors duration-200"
+                className="text-navy-200 hover:text-gold-300 font-sans font-medium text-sm tracking-wide transition-colors duration-200 relative group"
               >
                 {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-gold-400 group-hover:w-full transition-all duration-300" />
               </a>
             ))}
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-full font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+              className="btn-gold text-navy-950 px-6 py-2.5 rounded-sm font-sans font-semibold text-sm tracking-wide shadow-md"
             >
               {texts.contact}
             </a>
-          </div>
+          </nav>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={toggleMenu}
-              className="text-slate-500 hover:text-slate-700 p-2"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          {/* Mobile toggle */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-navy-200 hover:text-gold-300 p-2 transition-colors"
+          >
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Nav Menu */}
+      {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full">
-          <div className="px-4 pt-2 pb-6 space-y-2">
+        <div className="md:hidden bg-navy-950 border-t border-navy-800/60 absolute w-full shadow-xl">
+          <div className="px-4 py-6 space-y-1">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="block px-3 py-4 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50"
+                className="block px-4 py-3 text-navy-200 hover:text-gold-300 font-sans font-medium tracking-wide transition-colors border-b border-navy-800/40"
               >
                 {link.name}
               </a>
             ))}
+            <div className="pt-4">
+              <a
+                href="#contact"
+                onClick={(e) => handleNavClick(e, '#contact')}
+                className="btn-gold block text-center text-navy-950 px-6 py-3 rounded-sm font-sans font-semibold text-sm tracking-wide"
+              >
+                {texts.contact}
+              </a>
+            </div>
           </div>
         </div>
       )}
