@@ -1,4 +1,5 @@
 import React from 'react';
+import { Instagram } from 'lucide-react';
 import { PHONE_NUMBER, EMAIL_ADDRESS } from '../constants';
 
 const Footer: React.FC = () => {
@@ -18,6 +19,19 @@ const Footer: React.FC = () => {
             <p className="font-sans text-sm font-light leading-relaxed text-navy-400">
               Professional vehicle storage and airport delivery in Menorca. Trusted by second-home owners across the island.
             </p>
+
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com/mahoncarstorage/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-5 text-navy-400 hover:text-gold-300 transition-colors group"
+            >
+              <div className="w-8 h-8 bg-navy-800 border border-navy-700 rounded-sm flex items-center justify-center group-hover:border-gold-400/40 transition-colors">
+                <Instagram size={15} className="text-gold-400" />
+              </div>
+              <span className="font-sans text-sm">@mahoncarstorage</span>
+            </a>
           </div>
 
           {/* Contact */}
