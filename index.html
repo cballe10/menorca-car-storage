@@ -3,12 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Default meta (English) — overridden per route by React via react-helmet or direct DOM -->
     <title>Mahon Car Storage — Secure Vehicle Storage & Airport Delivery in Menorca</title>
     <meta name="description" content="Professional car storage in Menorca. Secure indoor & outdoor vehicle storage near Mahón with airport delivery to MAH. ITV management, battery care & valet. From 550€/year." />
     <meta name="keywords" content="car storage Menorca, vehicle storage Mahon, airport delivery Menorca, ITV management Menorca, parking Menorca, custodia coches Menorca, garde auto Minorque" />
     <meta name="robots" content="index, follow" />
 
-    <!-- Canonical & hreflang for multilingual SEO -->
+    <!-- Canonical & hreflang -->
     <link rel="canonical" href="https://www.mahoncarstorage.com/" />
     <link rel="alternate" hreflang="en" href="https://www.mahoncarstorage.com/" />
     <link rel="alternate" hreflang="es" href="https://www.mahoncarstorage.com/es" />
@@ -20,6 +22,85 @@
     <meta property="og:description" content="Secure car storage in Menorca with airport delivery. Professional, flexible, trusted by second-home owners." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.mahoncarstorage.com/" />
+
+    <!-- =====================================================
+         LOCAL BUSINESS SCHEMA — JSON-LD
+         Tells Google exactly what this business is, where
+         it is, how to contact it, and when it's open.
+    ====================================================== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Mahon Car Storage",
+      "description": "Professional car storage in Menorca with airport delivery. Secure indoor and outdoor vehicle storage near Mahón. ITV management, battery care and valet services.",
+      "url": "https://mahoncarstorage.com/",
+      "telephone": "+34611711581",
+      "email": "mahoncarstorage@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Carrer de sa Dragonera 2",
+        "postalCode": "07714",
+        "addressLocality": "Mahón",
+        "addressRegion": "Menorca",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 39.8834,
+        "longitude": 4.2649
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
+          ],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/mahoncarstorage/"
+      ],
+      "priceRange": "€€",
+      "currenciesAccepted": "EUR",
+      "areaServed": {
+        "@type": "Place",
+        "name": "Menorca, Balearic Islands, Spain"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Car Storage Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Long-term Car Storage Menorca",
+              "description": "Secure indoor and outdoor car storage in Menorca from 550€ per year."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Airport Delivery Menorca",
+              "description": "Vehicle delivery and collection at Menorca Airport (MAH)."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "ITV Management Menorca",
+              "description": "Full ITV vehicle inspection management on behalf of the owner."
+            }
+          }
+        ]
+      }
+    }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
