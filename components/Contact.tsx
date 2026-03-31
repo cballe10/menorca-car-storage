@@ -80,7 +80,7 @@ const Contact: React.FC<ContactProps> = ({ content }) => {
               {content.description}
             </p>
 
-            <div className="space-y-8">
+            <div className="space-y-8 mb-12">
               {infos.map((info, i) => (
                 <div key={i} className="flex items-start gap-5">
                   <div className="w-11 h-11 bg-navy-800 border border-navy-700 rounded-sm flex items-center justify-center flex-shrink-0 text-gold-400">
@@ -101,6 +101,20 @@ const Contact: React.FC<ContactProps> = ({ content }) => {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Google Maps embed */}
+            <div className="rounded-sm overflow-hidden border border-navy-800/60 shadow-lg shadow-navy-950/50">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2981.1620393649837!2d4.242808587649186!3d39.88401662004279!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12958729624911cf%3A0x45e342ff37a10691!2sMahon%20Car%20Storage%20-%20Custodia%20Coches%20Menorca!5e1!3m2!1ses!2ses!4v1774986754858!5m2!1ses!2ses"
+                width="100%"
+                height="240"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Mahon Car Storage location"
+              />
             </div>
           </div>
 
@@ -174,6 +188,7 @@ const Contact: React.FC<ContactProps> = ({ content }) => {
               </form>
             )}
           </div>
+
         </div>
       </div>
     </section>
