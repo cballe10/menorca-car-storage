@@ -7,9 +7,28 @@ interface ContactProps {
   content: ContactContent;
 }
 
+const DIAL_CODES = [
+  { code: '+34', flag: '🇪🇸', label: 'ES' },
+  { code: '+44', flag: '🇬🇧', label: 'GB' },
+  { code: '+33', flag: '🇫🇷', label: 'FR' },
+  { code: '+49', flag: '🇩🇪', label: 'DE' },
+  { code: '+31', flag: '🇳🇱', label: 'NL' },
+  { code: '+32', flag: '🇧🇪', label: 'BE' },
+  { code: '+41', flag: '🇨🇭', label: 'CH' },
+  { code: '+43', flag: '🇦🇹', label: 'AT' },
+  { code: '+39', flag: '🇮🇹', label: 'IT' },
+  { code: '+351', flag: '🇵🇹', label: 'PT' },
+  { code: '+46', flag: '🇸🇪', label: 'SE' },
+  { code: '+47', flag: '🇳🇴', label: 'NO' },
+  { code: '+45', flag: '🇩🇰', label: 'DK' },
+  { code: '+353', flag: '🇮🇪', label: 'IE' },
+  { code: '+1',  flag: '🇺🇸', label: 'US' },
+];
+
 const Contact: React.FC<ContactProps> = ({ content }) => {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [dialCode, setDialCode] = useState('+34');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,6 +36,9 @@ const Contact: React.FC<ContactProps> = ({ content }) => {
     setErrorMessage('');
     const form = e.currentTarget;
     const data = new FormData(form);
+    // Prepend dial code to phone number
+    const phone = data.get('phone') as string;
+    data.set('phone', `${dialCode} ${phone}`);
     try {
       const res = await fetch('https://formspree.io/f/xdkqrgrb', {
         method: 'POST',
@@ -26,6 +48,7 @@ const Contact: React.FC<ContactProps> = ({ content }) => {
       if (res.ok) {
         setFormStatus('success');
         form.reset();
+        setDialCode('+34');
         setTimeout(() => setFormStatus('idle'), 6000);
       } else {
         const json = await res.json();
@@ -61,13 +84,12 @@ const Contact: React.FC<ContactProps> = ({ content }) => {
 
   return (
     <section id="contact" className="scroll-mt-32 py-28 bg-navy-950 relative">
-      {/* Subtle top gold line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-400/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-          {/* Left: info */}
+          {/* Left: contact info + map */}
           <div>
             <p className="font-sans text-xs text-gold-500 tracking-widest uppercase font-semibold mb-3">
               {content.heading}
@@ -130,44 +152,69 @@ const Contact: React.FC<ContactProps> = ({ content }) => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
+
+                {/* Name */}
                 <div>
                   <label className="block font-sans text-xs text-slate-500 tracking-wide uppercase mb-1.5">
-                    {content.nameLabel}
+                    {content.nameLabel} <span className="text-gold-500">*</span>
                   </label>
                   <input
                     type="text" name="name" required
                     className="w-full px-4 py-3 border border-slate-200 rounded-sm font-sans text-sm text-navy-900 bg-slate-50 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-300 transition-all"
                   />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block font-sans text-xs text-slate-500 tracking-wide uppercase mb-1.5">
-                      {content.emailLabel}
-                    </label>
-                    <input
-                      type="email" name="email" required
-                      className="w-full px-4 py-3 border border-slate-200 rounded-sm font-sans text-sm text-navy-900 bg-slate-50 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-300 transition-all"
-                    />
-                  </div>
-                  <div>
-                    <label className="block font-sans text-xs text-slate-500 tracking-wide uppercase mb-1.5">
-                      {content.phoneLabel}
-                    </label>
-                    <input
-                      type="tel" name="phone"
-                      className="w-full px-4 py-3 border border-slate-200 rounded-sm font-sans text-sm text-navy-900 bg-slate-50 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-300 transition-all"
-                    />
-                  </div>
-                </div>
+
+                {/* Email */}
                 <div>
                   <label className="block font-sans text-xs text-slate-500 tracking-wide uppercase mb-1.5">
-                    {content.messageLabel}
+                    {content.emailLabel} <span className="text-gold-500">*</span>
+                  </label>
+                  <input
+                    type="email" name="email" required
+                    className="w-full px-4 py-3 border border-slate-200 rounded-sm font-sans text-sm text-navy-900 bg-slate-50 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-300 transition-all"
+                  />
+                </div>
+
+                {/* Phone with dial code */}
+                <div>
+                  <label className="block font-sans text-xs text-slate-500 tracking-wide uppercase mb-1.5">
+                    {content.phoneLabel} <span className="text-gold-500">*</span>
+                  </label>
+                  <div className="flex gap-2">
+                    <select
+                      value={dialCode}
+                      onChange={(e) => setDialCode(e.target.value)}
+                      className="px-3 py-3 border border-slate-200 rounded-sm font-sans text-sm text-navy-900 bg-slate-50 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-300 transition-all cursor-pointer flex-shrink-0"
+                    >
+                      {DIAL_CODES.map((d) => (
+                        <option key={d.code + d.label} value={d.code}>
+                          {d.flag} {d.code}
+                        </option>
+                      ))}
+                    </select>
+                    <input
+                      type="tel" name="phone" required
+                      placeholder="611 711 581"
+                      className="flex-1 px-4 py-3 border border-slate-200 rounded-sm font-sans text-sm text-navy-900 bg-slate-50 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-300 transition-all"
+                    />
+                  </div>
+                  <p className="font-sans text-xs text-slate-400 mt-1.5">Include your country dialling code</p>
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label className="block font-sans text-xs text-slate-500 tracking-wide uppercase mb-1.5">
+                    {content.messageLabel} <span className="text-gold-500">*</span>
                   </label>
                   <textarea
                     name="message" rows={4} required
                     className="w-full px-4 py-3 border border-slate-200 rounded-sm font-sans text-sm text-navy-900 bg-slate-50 focus:outline-none focus:border-gold-400 focus:ring-1 focus:ring-gold-300 transition-all resize-none"
                   />
                 </div>
+
+                <p className="font-sans text-xs text-slate-400">
+                  <span className="text-gold-500">*</span> Required fields
+                </p>
 
                 {formStatus === 'error' && (
                   <div className="flex items-center gap-2 text-red-600 bg-red-50 border border-red-100 p-3 rounded-sm text-sm font-sans">
