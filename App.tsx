@@ -3,10 +3,10 @@ import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from
 import Header from './components/Header';
 import Hero from './components/Hero';
 import TrustBar from './components/TrustBar';
+import Contact from './components/Contact';
 import Services from './components/Services';
 import HowItWorks from './components/HowItWorks';
 import SeoSection from './components/SeoSection';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import AiAssistant from './components/AiAssistant';
 import { CONTENT } from './constants';
@@ -24,7 +24,6 @@ const languageToPath: Record<Language, string> = {
   [Language.FR]: '/fr',
 };
 
-// Per-language SEO meta data
 const META: Record<Language, { title: string; description: string; canonical: string }> = {
   [Language.EN]: {
     title: 'Mahon Car Storage — Secure Vehicle Storage & Airport Delivery in Menorca',
@@ -55,30 +54,23 @@ function SitePage() {
     navigate(languageToPath[lang]);
   };
 
-  // Update all meta tags on route change
   useEffect(() => {
-    // Language attribute
     document.documentElement.lang = currentLanguage.toLowerCase();
-
-    // Title
     document.title = meta.title;
 
-    // Meta description
-    let desc = document.querySelector('meta[name="description"]');
+    const desc = document.querySelector('meta[name="description"]');
     if (desc) desc.setAttribute('content', meta.description);
 
-    // Canonical
-    let canonical = document.querySelector('link[rel="canonical"]');
+    const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.setAttribute('href', meta.canonical);
 
-    // OG tags
-    let ogTitle = document.querySelector('meta[property="og:title"]');
+    const ogTitle = document.querySelector('meta[property="og:title"]');
     if (ogTitle) ogTitle.setAttribute('content', meta.title);
 
-    let ogDesc = document.querySelector('meta[property="og:description"]');
+    const ogDesc = document.querySelector('meta[property="og:description"]');
     if (ogDesc) ogDesc.setAttribute('content', meta.description);
 
-    let ogUrl = document.querySelector('meta[property="og:url"]');
+    const ogUrl = document.querySelector('meta[property="og:url"]');
     if (ogUrl) ogUrl.setAttribute('content', meta.canonical);
 
   }, [currentLanguage, meta]);
@@ -93,10 +85,10 @@ function SitePage() {
       <main>
         <Hero content={content.hero} />
         <TrustBar content={content.trustBar} />
+        <Contact content={content.contact} />
         <Services content={content.services} />
         <HowItWorks content={content.howItWorks} />
         <SeoSection content={content.seoSection} />
-        <Contact content={content.contact} />
       </main>
       <Footer />
       <AiAssistant content={content.ai} language={currentLanguage} />
