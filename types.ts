@@ -31,6 +31,23 @@ export interface ServicesContent {
   items: ServiceItem[];
 }
 
+export interface LocalServiceStep {
+  title: string;
+  description: string;
+}
+
+export interface LocalServiceContent {
+  sectionTitle: string;
+  heading: string;
+  subheading: string;
+  priceLabel: string;
+  priceUnit: string;
+  priceNote: string;
+  towns: string[];
+  steps: LocalServiceStep[];
+  cta: string;
+}
+
 export interface HowItWorksStep {
   step: string;
   title: string;
@@ -84,6 +101,7 @@ export interface Content {
   nav: NavContent;
   hero: HeroContent;
   services: ServicesContent;
+  localService: LocalServiceContent;
   howItWorks: HowItWorksContent;
   trustBar: TrustBarContent;
   seoSection: SeoSectionContent;
