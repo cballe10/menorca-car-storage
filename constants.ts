@@ -23,7 +23,7 @@ export const CONTENT: Record<Language, Content> = {
         { value: "550€", label: "12-Month Storage" },
         { value: "24/7", label: "Secure Facility" },
         { value: "MAH", label: "Airport Delivery" },
-        { value: "100%", label: "Peace of Mind" }
+        { value: "40€", label: "Per Week Local" }
       ]
     },
     services: {
@@ -57,6 +57,30 @@ export const CONTENT: Record<Language, Content> = {
         }
       ]
     },
+    localService: {
+      sectionTitle: "For Menorca Residents",
+      heading: "Going on a Trip? We'll Mind Your Car.",
+      subheading: "Live in Ciutadella, Es Mercadal, Ferreries or Es Migjorn? When you fly out from Menorca Airport, we'll collect your car, store it safely, and return it to you the day you land back — so you never have to worry about leaving it at the airport.",
+      priceLabel: "From just",
+      priceUnit: "per week",
+      priceNote: "Collection and return to your location included. Contact us for a personalised quote.",
+      towns: ["Ciutadella", "Es Mercadal", "Ferreries", "Es Migjorn Gran", "Alaior", "Sant Lluís", "Es Castell", "Mahón"],
+      steps: [
+        {
+          title: "We Collect Your Car",
+          description: "On the day of your departure, we come to your home or agreed location anywhere on the island and take your car to our secure storage facility in Mahón."
+        },
+        {
+          title: "Safe & Secure Storage",
+          description: "Your vehicle is kept in our monitored facility while you're away — fully protected, with regular checks throughout your trip."
+        },
+        {
+          title: "Returned on Arrival",
+          description: "The day you land back in Menorca, we deliver your car straight back to you. No waiting, no taxis — just drive home."
+        }
+      ],
+      cta: "Get a Quote"
+    },
     howItWorks: {
       sectionTitle: "Simple Process",
       heading: "How It Works",
@@ -89,7 +113,7 @@ export const CONTENT: Record<Language, Content> = {
         "Mahon Car Storage is Menorca's dedicated vehicle storage solution for property owners and holiday homeowners who need safe, professional long-term parking on the island. Based in Mahón (Maó), we serve clients across the whole of Menorca — from Ciutadella to Es Mercadal.",
         "Our car storage in Menorca is fully secure, with both indoor and outdoor options to suit every vehicle and budget. Whether you need storage for a few weeks or the full year, we offer flexible pricing with transparent rates — including our popular 12-month package from 550€ + IVA.",
         "One of our most valued services is airport delivery. We bring your car directly to Menorca Airport (MAH) when you fly in, saving you the hassle and cost of taxis or hire cars. When you leave, simply hand the keys back and we'll return your vehicle safely to storage.",
-        "We also offer optional services including ITV management, battery maintenance, valet cleaning, tyre and fluid checks — everything needed to keep your car roadworthy and ready for your next visit. Contact us today for a no-obligation quote."
+        "We also offer a short-term storage service for Menorca residents. If you live in Ciutadella, Es Mercadal, Ferreries, Es Migjorn or anywhere on the island and are heading abroad, we'll collect your car, store it safely, and return it to you on the day you arrive back — from just 40€ per week."
       ]
     },
     contact: {
@@ -134,7 +158,7 @@ export const CONTENT: Record<Language, Content> = {
         { value: "550€", label: "Almacenamiento 12 Meses" },
         { value: "24/7", label: "Instalaciones Seguras" },
         { value: "MAH", label: "Entrega en Aeropuerto" },
-        { value: "100%", label: "Tranquilidad Total" }
+        { value: "40€", label: "Por Semana Local" }
       ]
     },
     services: {
@@ -168,6 +192,30 @@ export const CONTENT: Record<Language, Content> = {
         }
       ]
     },
+    localService: {
+      sectionTitle: "Para Residentes en Menorca",
+      heading: "¿De Viaje? Nosotros Cuidamos Su Coche.",
+      subheading: "¿Vive en Ciutadella, Es Mercadal, Ferreries o Es Migjorn? Cuando vuele desde el aeropuerto de Menorca, recogemos su coche, lo custodiamos de forma segura y se lo devolvemos el día que aterrice — sin preocupaciones.",
+      priceLabel: "Desde solo",
+      priceUnit: "por semana",
+      priceNote: "Recogida y entrega en su domicilio incluidas. Contáctenos para un presupuesto personalizado.",
+      towns: ["Ciutadella", "Es Mercadal", "Ferreries", "Es Migjorn Gran", "Alaior", "Sant Lluís", "Es Castell", "Mahón"],
+      steps: [
+        {
+          title: "Recogemos Su Coche",
+          description: "El día de su salida, nos desplazamos a su domicilio o lugar acordado en cualquier punto de la isla y llevamos su vehículo a nuestras instalaciones en Mahón."
+        },
+        {
+          title: "Custodia Segura",
+          description: "Su vehículo permanece en nuestras instalaciones vigiladas mientras usted está fuera — completamente protegido y con revisiones periódicas."
+        },
+        {
+          title: "Entrega a Su Llegada",
+          description: "El día que aterrice en Menorca, le llevamos su coche. Sin esperas, sin taxis — directamente a casa."
+        }
+      ],
+      cta: "Solicitar Presupuesto"
+    },
     howItWorks: {
       sectionTitle: "Proceso Sencillo",
       heading: "Cómo Funciona",
@@ -200,7 +248,7 @@ export const CONTENT: Record<Language, Content> = {
         "Mahon Car Storage es la solución de almacenamiento de vehículos en Menorca para propietarios de segunda residencia que necesitan un aparcamiento seguro y profesional en la isla. Con base en Mahón (Maó), atendemos a clientes de toda Menorca — desde Ciutadella hasta Es Mercadal.",
         "Nuestro almacenamiento de coches en Menorca es totalmente seguro, con opciones interiores y exteriores para todo tipo de vehículo y presupuesto. Desde almacenamiento de semanas hasta contratos anuales, ofrecemos precios flexibles y transparentes, incluyendo nuestro popular paquete de 12 meses desde 550€ + IVA.",
         "Uno de nuestros servicios más valorados es la entrega en el aeropuerto de Menorca. Llevamos su coche directamente al Aeropuerto de Menorca (MAH) cuando aterriza, evitándole el coste y la molestia de taxis o coches de alquiler.",
-        "También ofrecemos servicios adicionales como gestión de ITV, mantenimiento de batería, limpieza, revisión de neumáticos y fluidos — todo lo necesario para mantener su coche a punto. Contáctenos hoy para un presupuesto sin compromiso."
+        "También ofrecemos un servicio de custodia a corto plazo para residentes en Menorca. Si vive en Ciutadella, Es Mercadal, Ferreries, Es Migjorn o cualquier punto de la isla y tiene un viaje previsto, recogemos su coche, lo custodiamos y se lo devolvemos el día de su regreso — desde solo 40€ por semana."
       ]
     },
     contact: {
@@ -245,7 +293,7 @@ export const CONTENT: Record<Language, Content> = {
         { value: "550€", label: "Stockage 12 Mois" },
         { value: "24/7", label: "Site Sécurisé" },
         { value: "MAH", label: "Livraison Aéroport" },
-        { value: "100%", label: "Tranquillité d'Esprit" }
+        { value: "40€", label: "Par Semaine Local" }
       ]
     },
     services: {
@@ -279,6 +327,30 @@ export const CONTENT: Record<Language, Content> = {
         }
       ]
     },
+    localService: {
+      sectionTitle: "Pour les Résidents de Minorque",
+      heading: "Vous Partez en Voyage ? On Garde Votre Voiture.",
+      subheading: "Vous habitez à Ciutadella, Es Mercadal, Ferreries ou Es Migjorn ? Quand vous prenez l'avion depuis Minorque, nous récupérons votre voiture, la stockons en sécurité et vous la restituons le jour de votre retour — sans souci.",
+      priceLabel: "À partir de",
+      priceUnit: "par semaine",
+      priceNote: "Collecte et restitution à votre domicile incluses. Contactez-nous pour un devis personnalisé.",
+      towns: ["Ciutadella", "Es Mercadal", "Ferreries", "Es Migjorn Gran", "Alaior", "Sant Lluís", "Es Castell", "Mahón"],
+      steps: [
+        {
+          title: "Nous Récupérons Votre Voiture",
+          description: "Le jour de votre départ, nous venons à votre domicile ou à l'endroit convenu sur l'île et amenons votre véhicule dans notre site sécurisé à Mahón."
+        },
+        {
+          title: "Stockage Sécurisé",
+          description: "Votre véhicule reste dans notre site surveillé pendant votre absence — entièrement protégé, avec des vérifications régulières."
+        },
+        {
+          title: "Restitution à Votre Arrivée",
+          description: "Le jour de votre atterrissage à Minorque, nous vous restituons votre voiture. Sans attente, sans taxi — rentrez directement chez vous."
+        }
+      ],
+      cta: "Demander un Devis"
+    },
     howItWorks: {
       sectionTitle: "Processus Simple",
       heading: "Comment Ça Marche",
@@ -311,7 +383,7 @@ export const CONTENT: Record<Language, Content> = {
         "Mahon Car Storage est le spécialiste du stockage de véhicules à Minorque pour les propriétaires de résidence secondaire ayant besoin d'un parking sécurisé et professionnel sur l'île. Basés à Mahón (Maó), nous accueillons des clients de toute l'île — de Ciutadella à Es Mercadal.",
         "Notre garde-auto à Minorque est entièrement sécurisé, avec des options intérieures et extérieures adaptées à tous les véhicules et budgets. Qu'il s'agisse de quelques semaines ou d'une année complète, nous proposons des tarifs flexibles et transparents, dont notre formule annuelle à partir de 550€ + TVA.",
         "L'un de nos services les plus appréciés est la livraison à l'aéroport de Minorque. Nous amenons votre voiture directement à l'aéroport (MAH) lors de votre arrivée, vous évitant taxis et voitures de location.",
-        "Nous proposons également des services optionnels : gestion du contrôle technique, entretien de la batterie, nettoyage, vérification des pneus et des niveaux — tout ce qu'il faut pour garder votre voiture en parfait état. Contactez-nous dès aujourd'hui pour un devis sans engagement."
+        "Nous proposons également un service de stockage à court terme pour les résidents de Minorque. Si vous habitez à Ciutadella, Es Mercadal, Ferreries ou Es Migjorn et partez en voyage, nous récupérons votre voiture, la stockons et vous la restituons le jour de votre retour — à partir de 40€ par semaine."
       ]
     },
     contact: {
