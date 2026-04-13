@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import TrustBar from './components/TrustBar';
 import Contact from './components/Contact';
 import Services from './components/Services';
+import LocalService from './components/LocalService';
 import HowItWorks from './components/HowItWorks';
 import SeoSection from './components/SeoSection';
 import Footer from './components/Footer';
@@ -37,7 +38,7 @@ const META: Record<Language, { title: string; description: string; canonical: st
   },
   [Language.FR]: {
     title: 'Mahon Car Storage — Garde-Auto Sécurisé & Livraison Aéroport à Minorque',
-    description: 'Garde-auto professionnel à Minorque. Stockage sécurisé intérieur et extérieur près de Mahón avec livraison à l\'aéroport MAH. Contrôle technique, entretien batterie et nettoyage. À partir de 550€/an.',
+    description: "Garde-auto professionnel à Minorque. Stockage sécurisé intérieur et extérieur près de Mahón avec livraison à l'aéroport MAH. Contrôle technique, entretien batterie et nettoyage. À partir de 550€/an.",
     canonical: 'https://www.mahoncarstorage.com/fr',
   },
 };
@@ -87,6 +88,7 @@ function SitePage() {
         <TrustBar content={content.trustBar} />
         <Contact content={content.contact} />
         <Services content={content.services} />
+        <LocalService content={content.localService} />
         <HowItWorks content={content.howItWorks} />
         <SeoSection content={content.seoSection} />
       </main>
